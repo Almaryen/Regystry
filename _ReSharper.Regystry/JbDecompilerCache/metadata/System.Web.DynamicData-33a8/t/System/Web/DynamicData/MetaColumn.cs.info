@@ -1,0 +1,26 @@
+﻿Code version: 6.1.1000.82
+Assembly name System.Web.DynamicData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35 mvid {df160de6-3dc0-45f8-bf5a-74cf4905df78}
+* ref mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {8ae82069-2aab-4ef7-80f9-1775568c4d85}
+* ref System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+  mvid {fa6755fd-da1a-49d3-9eb4-1e473e780ecd}
+* ref System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  mvid {0ee96e3e-6f1a-4551-8039-86e9955bcf6c}
+* ref System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {9b57c41c-9456-4d04-9a2b-20777454d586}
+* ref System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {ba37026f-1371-4849-854a-e2cce7cad02b}
+* ref System.ComponentModel.DataAnnotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+  mvid {a3d9c8fc-c1ab-4d86-a6c1-e3708d149804}
+* ref System.Data.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {c743c948-e01e-41bf-8ae8-070650e3d814}
+* ref System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {b1c4cce4-1848-46b5-b537-9a7f07b5d2b9}
+* ref System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  mvid {993b7852-2908-4cee-bbb2-52213aea31a1}
+* ref System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {a0a8e655-5215-4802-816d-c9e5ebd7da5d}
+* ref System.Web.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {908dde6d-4b9c-4ecc-8564-d59dbf81e25c}
+* ref System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {5e28dde6-b1a5-4ff0-b9ef-3d80ca801e18}

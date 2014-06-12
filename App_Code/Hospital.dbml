@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Hospital" Class="HospitalDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(local);Initial Catalog=Hospital;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HospitalConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.DEPARTAMENT" Member="DEPARTAMENTs">
+    <Type Name="DEPARTAMENT">
+      <Column Name="DEPART_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MEDORG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DEPART_NAME" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="DEPARTAMENT_OFFICE" Member="OFFICEs" ThisKey="DEPART_ID" OtherKey="DEPART_ID" Type="OFFICE" />
+      <Association Name="DEPARTAMENT_POST" Member="POSTs" ThisKey="DEPART_ID" OtherKey="DEPART_ID" Type="POST" />
+      <Association Name="MEDORGANIZATION_DEPARTAMENT" Member="MEDORGANIZATION" ThisKey="MEDORG_ID" OtherKey="MEDORG_ID" Type="MEDORGANIZATION" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USSER" Member="USSERs">
+    <Type Name="USSER">
+      <Column Name="US_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LOGIN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PASSWORD" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PATIENT_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVATEDDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ADDEDDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LASTVISITDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ROLE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="PATIENT_USSER" Member="PATIENT" ThisKey="PATIENT_ID" OtherKey="PATIENT_ID" Type="PATIENT" IsForeignKey="true" />
+      <Association Name="ROLE_USSER" Member="ROLE" ThisKey="ROLE_ID" OtherKey="ROLE_ID" Type="ROLE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DISTRICT" Member="DISTRICTs">
+    <Type Name="DISTRICT">
+      <Column Name="DISTR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DISTR_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="REG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="DISTRICT_PATIENT" Member="PATIENTs" ThisKey="DISTR_ID" OtherKey="DISTR_ID" Type="PATIENT" />
+      <Association Name="DISTRICT_SETTLEMENT" Member="SETTLEMENTs" ThisKey="DISTR_ID" OtherKey="DISTR_ID" Type="SETTLEMENT" />
+      <Association Name="REGION_DISTRICT" Member="REGION" ThisKey="REG_ID" OtherKey="REG_ID" Type="REGION" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DISTRICT_STREET" Member="DISTRICT_STREETs">
+    <Type Name="DISTRICT_STREET">
+      <Column Name="STREET_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MEDDISTRICT_AGECATEGORY_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DISTRICT_STREET_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NUM_STREET" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="MEDDISTRICT_AGECATEGORY_DISTRICT_STREET" Member="MEDDISTRICT_AGECATEGORY" ThisKey="MEDDISTRICT_AGECATEGORY_ID" OtherKey="MEDDISTRICT_AGECATEGORY_ID" Type="MEDDISTRICT_AGECATEGORY" IsForeignKey="true" />
+      <Association Name="STREET_DISTRICT_STREET" Member="STREET" ThisKey="STREET_ID" OtherKey="STREET_ID" Type="STREET" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MED_PROFESSION" Member="MED_PROFESSIONs">
+    <Type Name="MED_PROFESSION">
+      <Column Name="MEDPROF_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MEDPROF_NAME" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="MED_PROFESSION_POST" Member="POSTs" ThisKey="MEDPROF_ID" OtherKey="MEDPROF_ID" Type="POST" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MEDDISTRICT" Member="MEDDISTRICTs">
+    <Type Name="MEDDISTRICT">
+      <Column Name="MEDDISTRICT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AGECATEGORY" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="POST_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MEDDISTRICT_NAME" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="MEDDISTRICT_MEDDISTRICT_AGECATEGORY" Member="MEDDISTRICT_AGECATEGORies" ThisKey="MEDDISTRICT_ID" OtherKey="MEDDISTRICT_ID" Type="MEDDISTRICT_AGECATEGORY" />
+      <Association Name="MEDDISTRICT_PATIENT" Member="PATIENTs" ThisKey="MEDDISTRICT_ID" OtherKey="MEDDISTRICT_ID" Type="PATIENT" />
+      <Association Name="POST_MEDDISTRICT" Member="POST" ThisKey="POST_ID" OtherKey="POST_ID" Type="POST" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MEDDISTRICT_AGECATEGORY" Member="MEDDISTRICT_AGECATEGORies">
+    <Type Name="MEDDISTRICT_AGECATEGORY">
+      <Column Name="MEDDISTRICT_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MEDDISTRICT_AGECATEGORY_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="START_AGE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STOP_AGE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="MEDDISTRICT_AGECATEGORY_DISTRICT_STREET" Member="DISTRICT_STREETs" ThisKey="MEDDISTRICT_AGECATEGORY_ID" OtherKey="MEDDISTRICT_AGECATEGORY_ID" Type="DISTRICT_STREET" />
+      <Association Name="MEDDISTRICT_MEDDISTRICT_AGECATEGORY" Member="MEDDISTRICT" ThisKey="MEDDISTRICT_ID" OtherKey="MEDDISTRICT_ID" Type="MEDDISTRICT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MEDORGANIZATION" Member="MEDORGANIZATIONs">
+    <Type Name="MEDORGANIZATION">
+      <Column Name="MEDORG_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MEDORG_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="MEDORGANIZATION_DEPARTAMENT" Member="DEPARTAMENTs" ThisKey="MEDORG_ID" OtherKey="MEDORG_ID" Type="DEPARTAMENT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OFFICE" Member="OFFICEs">
+    <Type Name="OFFICE">
+      <Column Name="OFFICES_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NUMBER" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DEPART_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="OFFICE_SCHEDULE_DOC" Member="SCHEDULE_DOCs" ThisKey="OFFICES_ID" OtherKey="OFFICES_ID" Type="SCHEDULE_DOC" />
+      <Association Name="DEPARTAMENT_OFFICE" Member="DEPARTAMENT" ThisKey="DEPART_ID" OtherKey="DEPART_ID" Type="DEPARTAMENT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PATIENT" Member="PATIENTs">
+    <Type Name="PATIENT">
+      <Column Name="PATIENT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FIRSTNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MIDDLENAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LASTNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BIRTHDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HOMETEL" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MOBTEL" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SEX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MEDDISTRICT_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="REG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DISTR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SETTL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HOUSE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SECTION" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FLAT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="PATIENT_USSER" Member="USSERs" ThisKey="PATIENT_ID" OtherKey="PATIENT_ID" Type="USSER" />
+      <Association Name="PATIENT_RECEPTION" Member="RECEPTIONs" ThisKey="PATIENT_ID" OtherKey="PATIENT_ID" Type="RECEPTION" />
+      <Association Name="MEDDISTRICT_PATIENT" Member="MEDDISTRICT" ThisKey="MEDDISTRICT_ID" OtherKey="MEDDISTRICT_ID" Type="MEDDISTRICT" IsForeignKey="true" />
+      <Association Name="DISTRICT_PATIENT" Member="DISTRICT" ThisKey="DISTR_ID" OtherKey="DISTR_ID" Type="DISTRICT" IsForeignKey="true" />
+      <Association Name="REGION_PATIENT" Member="REGION" ThisKey="REG_ID" OtherKey="REG_ID" Type="REGION" IsForeignKey="true" />
+      <Association Name="SETTLEMENT_PATIENT" Member="SETTLEMENT" ThisKey="SETTL_ID" OtherKey="SETTL_ID" Type="SETTLEMENT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PERSONAL" Member="PERSONALs">
+    <Type Name="PERSONAL">
+      <Column Name="PERSONAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FIRSTNAME" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MIDLNAME" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LASTNAME" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="PERSONAL_POST" Member="POSTs" ThisKey="PERSONAL_ID" OtherKey="PERSONAL_ID" Type="POST" />
+    </Type>
+  </Table>
+  <Table Name="dbo.POST" Member="POSTs">
+    <Type Name="POST">
+      <Column Name="MEDPROF_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="POST_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DEPART_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PERSONAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="POST_MEDDISTRICT" Member="MEDDISTRICTs" ThisKey="POST_ID" OtherKey="POST_ID" Type="MEDDISTRICT" />
+      <Association Name="POST_RECEPTION" Member="RECEPTIONs" ThisKey="POST_ID" OtherKey="POST_ID" Type="RECEPTION" />
+      <Association Name="POST_SCHEDULE_DOC" Member="SCHEDULE_DOCs" ThisKey="POST_ID" OtherKey="POST_ID" Type="SCHEDULE_DOC" />
+      <Association Name="POST_TEMPLATEGRAFTIME" Member="TEMPLATEGRAFTIMEs" ThisKey="POST_ID" OtherKey="POST_ID" Type="TEMPLATEGRAFTIME" />
+      <Association Name="MED_PROFESSION_POST" Member="MED_PROFESSION" ThisKey="MEDPROF_ID" OtherKey="MEDPROF_ID" Type="MED_PROFESSION" IsForeignKey="true" />
+      <Association Name="DEPARTAMENT_POST" Member="DEPARTAMENT" ThisKey="DEPART_ID" OtherKey="DEPART_ID" Type="DEPARTAMENT" IsForeignKey="true" />
+      <Association Name="PERSONAL_POST" Member="PERSONAL" ThisKey="PERSONAL_ID" OtherKey="PERSONAL_ID" Type="PERSONAL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RECEPTION" Member="RECEPTIONs">
+    <Type Name="RECEPTION">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PATIENT_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RTIMESTART" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="POST_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RTIMESTOP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="PATIENT_RECEPTION" Member="PATIENT" ThisKey="PATIENT_ID" OtherKey="PATIENT_ID" Type="PATIENT" IsForeignKey="true" />
+      <Association Name="POST_RECEPTION" Member="POST" ThisKey="POST_ID" OtherKey="POST_ID" Type="POST" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.REGION" Member="REGIONs">
+    <Type Name="REGION">
+      <Column Name="REG_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="REG_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="REGION_DISTRICT" Member="DISTRICTs" ThisKey="REG_ID" OtherKey="REG_ID" Type="DISTRICT" />
+      <Association Name="REGION_PATIENT" Member="PATIENTs" ThisKey="REG_ID" OtherKey="REG_ID" Type="PATIENT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ROLE" Member="ROLEs">
+    <Type Name="ROLE">
+      <Column Name="ROLE_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ROLE_NAME" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="ROLE_USSER" Member="USSERs" ThisKey="ROLE_ID" OtherKey="ROLE_ID" Type="USSER" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SCHEDULE_DOC" Member="SCHEDULE_DOCs">
+    <Type Name="SCHEDULE_DOC">
+      <Column Name="STARTTIME" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ENDTIME" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SCHEDULEDOC_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MODE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="POST_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OFFICES_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="POST_SCHEDULE_DOC" Member="POST" ThisKey="POST_ID" OtherKey="POST_ID" Type="POST" IsForeignKey="true" />
+      <Association Name="OFFICE_SCHEDULE_DOC" Member="OFFICE" ThisKey="OFFICES_ID" OtherKey="OFFICES_ID" Type="OFFICE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SETTLEMENTS" Member="SETTLEMENTs">
+    <Type Name="SETTLEMENT">
+      <Column Name="SETTL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SETTL_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DISTR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="SETTLEMENT_PATIENT" Member="PATIENTs" ThisKey="SETTL_ID" OtherKey="SETTL_ID" Type="PATIENT" />
+      <Association Name="SETTLEMENT_STREET" Member="STREETs" ThisKey="SETTL_ID" OtherKey="SETTL_ID" Type="STREET" />
+      <Association Name="DISTRICT_SETTLEMENT" Member="DISTRICT" ThisKey="DISTR_ID" OtherKey="DISTR_ID" Type="DISTRICT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.STREET" Member="STREETs">
+    <Type Name="STREET">
+      <Column Name="STREET_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="STREET_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SETTL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="STREET_DISTRICT_STREET" Member="DISTRICT_STREETs" ThisKey="STREET_ID" OtherKey="STREET_ID" Type="DISTRICT_STREET" />
+      <Association Name="SETTLEMENT_STREET" Member="SETTLEMENT" ThisKey="SETTL_ID" OtherKey="SETTL_ID" Type="SETTLEMENT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TEMPLATEGRAFTIME" Member="TEMPLATEGRAFTIMEs">
+    <Type Name="TEMPLATEGRAFTIME">
+      <Column Name="TEMPLATEGRAFTIME_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MONDAY_FROM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MONDAY_UNTIL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TUESDAY_FROM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TUESDAY_UNTIL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WEDNESDAY_FROM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WEDNESDAY_UNTIL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="THURSDAY_FROM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="THURSDAY_UNTIL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FRIDAY_FROM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FRIDAY_UNTIL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SATURDAY_FROM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SATURDAY_UNTIL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SUNDAY_FROM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SUNDAY_UNTIL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="POST_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MODE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="POST_TEMPLATEGRAFTIME" Member="POST" ThisKey="POST_ID" OtherKey="POST_ID" Type="POST" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

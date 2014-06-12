@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Main.master.cs" Inherits="Main" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ua">
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="UserSite.css" rel="stylesheet" type="text/css" />
+      
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Form2" runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                 <h1> 
+                 Електронна реєстратура
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                       
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Ласкаво просимо <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                
+                <asp:Menu ID="NavigationMenu" runat="server" Orientation="Horizontal" 
+                    Font-Size="Large" StaticSubMenuIndent="16px" Height="30px">
+                    <Items>
+                        <asp:MenuItem Text="Розклад роботи лікарів" Value="Розклад роботи лікарів">
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Допомога" Value="Допомога"></asp:MenuItem>
+                        <asp:MenuItem Text="Адміністрування" Value="Адміністрування" NavigateUrl="~/"></asp:MenuItem>
+                        <asp:MenuItem Text="Моя картка" Value="Моя картка"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+                
+                
+
+
+            </div>
+            
+
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>
+
